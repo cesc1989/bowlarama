@@ -30,7 +30,7 @@ module Bowlarama
         @score << "Pinfalls\t"
 
         player.frames.each_with_index do |frame, index|
-          @score << "#{frame.rolls.first}\t#{frame.rolls.last}\t"
+          @score << print_strike_or_spare(frame)
           @score << "\n" if index == player.frames.count - 1
         end
 
@@ -40,6 +40,16 @@ module Bowlarama
           @score << "#{frame.score}\t\t"
           @score << "\n" if index == player.frames.count - 1
         end
+      end
+    end
+
+    def print_strike_or_spare(frame)
+      if !frame.has_strike && !frame.has_spare
+        "#{frame.rolls.first}\t#{frame.rolls.last}\t"
+      elsif frame.has_strike && !frame.has_spare
+        " \tX\t"
+      elsif !frame.has_strike && frame.has_spare
+        "#{frame.rolls.first}\t/\t"
       end
     end
   end
