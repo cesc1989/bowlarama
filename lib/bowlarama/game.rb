@@ -26,19 +26,22 @@ module Bowlarama
 
     def players_data
       @players.each do |player|
+        player_frames = player.frames
+        player_frames_count = player_frames.count
+
         @score << "#{player.name}\n"
         @score << "Pinfalls\t"
 
-        player.frames.each_with_index do |frame, index|
+        player_frames.each_with_index do |frame, index|
           @score << print_strike_or_spare(frame)
-          @score << "\n" if index == player.frames.count - 1
+          @score << "\n" if index == player_frames_count - 1
         end
 
         @score << "Score\t\t"
 
-        player.frames.each_with_index do |frame, index|
+        player_frames.each_with_index do |frame, index|
           @score << "#{frame.score}\t\t"
-          @score << "\n" if index == player.frames.count - 1
+          @score << "\n" if index == player_frames_count - 1
         end
       end
     end
