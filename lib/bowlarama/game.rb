@@ -1,5 +1,8 @@
 module Bowlarama
   class Game
+    STRIKE_SIGN = 'X'.freeze
+    SPARE_SIGN = '/'.freeze
+
     def initialize(*players)
       @players = players
       @score = ''
@@ -50,9 +53,9 @@ module Bowlarama
       if !frame.has_strike && !frame.has_spare
         "#{frame.rolls.first}\t#{frame.rolls.last}\t"
       elsif frame.has_strike && !frame.has_spare
-        " \tX\t"
+        " \t#{STRIKE_SIGN}\t"
       elsif !frame.has_strike && frame.has_spare
-        "#{frame.rolls.first}\t/\t"
+        "#{frame.rolls.first}\t#{SPARE_SIGN}\t"
       end
     end
   end
