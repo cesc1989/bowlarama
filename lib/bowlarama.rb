@@ -19,7 +19,7 @@ module Bowlarama
     player_1 = Game::Player.new(name: match_sheet.keys.first, pinfalls: match_sheet.values.first)
     player_2 = Game::Player.new(name: match_sheet.keys.last, pinfalls: match_sheet.values.last)
 
-    player_1.assign_rolls_to_frames
+    player_1.calculate_score
   end
 end
 

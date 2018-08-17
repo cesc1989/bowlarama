@@ -14,6 +14,11 @@ module Bowlarama
         @frames = Frame.frames
       end
 
+      def calculate_score
+        assign_rolls_to_frames
+        calculate_score_per_frames
+      end
+
       def assign_rolls_to_frames
         @pinfalls.each do |pf|
           @frames.each do |frame|
@@ -25,7 +30,13 @@ module Bowlarama
         end
       end
 
-      def calculate_score_per_frames; end
+      def calculate_score_per_frames
+        prev_frame_score = 0
+        @frames.each do |frame|
+          prev_frame_score += frame.rolls.reduce(:+)
+          frame.score = prev_frame_score
+        end
+      end
 
       private
 
