@@ -56,6 +56,8 @@ module Bowlarama
         roll == 10
       end
 
+      # Receives reduced array of rolls
+      # frame.rolls.reduce(:+)
       def spare?(rolls)
         rolls == 10
       end
