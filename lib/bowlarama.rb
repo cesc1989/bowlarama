@@ -1,7 +1,7 @@
-require "bowlarama/version"
-require 'bowlarama/game'
-require 'bowlarama/games/frame'
-require 'bowlarama/games/player'
+require_relative './bowlarama/version'
+require_relative './bowlarama/game'
+require_relative './bowlarama/games/frame'
+require_relative './bowlarama/games/player'
 
 module Bowlarama
   def self.score_sheet(scores_file)
@@ -24,6 +24,3 @@ module Bowlarama
     ).print_score
   end
 end
-
-# Bowlarama.score_sheet("#{Dir.pwd}/spec/fixtures/scores_0_strikes_x_spares.txt")
-Bowlarama.score_sheet("#{Dir.pwd}/spec/fixtures/scores.txt")
