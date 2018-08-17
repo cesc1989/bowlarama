@@ -1,6 +1,6 @@
 # Bowlarama
 
-
+Bowling scores for awesome bowlers.
 
 ## Installation
 
@@ -20,7 +20,11 @@ Or install it yourself as:
 
 ## Usage
 
+Run this command:
 
+```bash
+$ ./bin/bowlarama /path/to/scores.txt
+```
 
 ## Development
 
