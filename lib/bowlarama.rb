@@ -1,5 +1,7 @@
 require "bowlarama/version"
 require 'bowlarama/game'
+require 'bowlarama/games/frame'
+require 'bowlarama/games/player'
 
 module Bowlarama
   def self.score_sheet(scores_file)
@@ -16,8 +18,8 @@ module Bowlarama
       end
     end
 
-    player_1 = Game::Player.new(name: match_sheet.keys.first, pinfalls: match_sheet.values.first)
-    player_2 = Game::Player.new(name: match_sheet.keys.last, pinfalls: match_sheet.values.last)
+    player_1 = Games::Player.new(name: match_sheet.keys.first, pinfalls: match_sheet.values.first)
+    player_2 = Games::Player.new(name: match_sheet.keys.last, pinfalls: match_sheet.values.last)
 
     player_1.calculate_score
   end
