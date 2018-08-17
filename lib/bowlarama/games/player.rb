@@ -1,7 +1,7 @@
 module Bowlarama
   module Games
     class Player
-      attr_reader :name
+      attr_reader :name, :frames
 
       def initialize(name:, pinfalls:)
         @name = name
@@ -12,7 +12,7 @@ module Bowlarama
       def calculate_score
         assign_rolls_to_frames
         calculate_score_per_frames
-        @frames.each { |f| puts f.inspect }
+        #@frames.each { |f| puts f.inspect }
       end
 
       def assign_rolls_to_frames
