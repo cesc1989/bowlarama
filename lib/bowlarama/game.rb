@@ -11,24 +11,21 @@ module Bowlarama
       def initialize(name:, pinfalls:)
         @name = name
         @pinfalls = pinfalls
-        @pinfalls_clone = @pinfalls.clone
         @frames = Frame.frames
       end
 
-      def scores_per_frame
-        @frames.each do |frame|
-          @pinfalls_clone.each do |pf|
-            roll = pf.to_i
-
+      def assign_rolls_to_frames
+        @pinfalls.each do |pf|
+          @frames.each do |frame|
             if frame.slot_for_rolls?
-              frame.rolls << roll
-              @pinfalls_clone.delete_at(0)
-            else
+              frame.rolls << pf.to_i
               break
             end
           end
         end
       end
+
+      def calculate_score_per_frames; end
 
       private
 
@@ -52,7 +49,8 @@ module Bowlarama
         end
       end
 
-      attr_accessor :rolls
+      attr_reader :id
+      attr_accessor :rolls, :score
 
       def initialize(id)
         @id = id

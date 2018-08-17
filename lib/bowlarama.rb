@@ -23,5 +23,4 @@ module Bowlarama
   end
 end
 
-# Bowlarama.score_sheet("#{Dir.pwd}/spec/fixtures/scores.txt")
 Bowlarama.score_sheet("#{Dir.pwd}/spec/fixtures/scores_sin_bonos.txt")
