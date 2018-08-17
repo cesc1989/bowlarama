@@ -22,9 +22,9 @@ module Bowlarama
     player_2 = Games::Player.new(name: match_sheet.keys.last, pinfalls: match_sheet.values.last)
 
     player_1.calculate_score
-    puts "jgador 2"
-    player_2.calculate_score
+    # puts "jgador 2"
+    # player_2.calculate_score
   end
 end
 
-Bowlarama.score_sheet("#{Dir.pwd}/spec/fixtures/scores_x_strikes_0_spares.txt")
+Bowlarama.score_sheet("#{Dir.pwd}/spec/fixtures/scores_0_strikes_x_spares.txt")

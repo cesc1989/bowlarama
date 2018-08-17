@@ -20,8 +20,13 @@ module Bowlarama
           @frames.each do |frame|
             roll = pf.to_i
 
+            if frame.rolls.count == 2 && spare?(frame.rolls.reduce(:+))
+              frame.has_spare = true
+            end
+
             if frame.slot_for_rolls?
               frame.rolls << roll
+
               if strike?(roll)
                 frame.rolls << 0
                 frame.has_strike = true
