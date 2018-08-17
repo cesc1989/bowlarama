@@ -8,12 +8,13 @@ module Bowlarama
       end
 
       attr_reader :id
-      attr_accessor :rolls, :score
+      attr_accessor :rolls, :score, :has_strike
 
       def initialize(id)
         @id = id
         @rolls = []
         @score = 0
+        @has_strike = false
       end
 
       def slot_for_rolls?
