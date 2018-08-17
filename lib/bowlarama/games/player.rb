@@ -12,15 +12,16 @@ module Bowlarama
       def calculate_score
         assign_rolls_to_frames
         calculate_score_per_frames
-        # @frames.each { |f| puts f.inspect }
+        @frames.each { |f| puts f.inspect }
       end
 
       def assign_rolls_to_frames
         @pinfalls.each do |pf|
           @frames.each do |frame|
+            frame_rolls_count = frame.rolls.count
             roll = pf.to_i
 
-            if frame.rolls.count == 2 && spare?(frame.rolls.reduce(:+))
+            if frame_rolls_count == 2 && spare?(frame.rolls)
               frame.has_spare = true
             end
 
@@ -61,10 +62,10 @@ module Bowlarama
         roll == 10
       end
 
-      # Receives reduced array of rolls
-      # frame.rolls.reduce(:+)
+      # Receives array of rolls: [roll_1, roll_2]
       def spare?(rolls)
-        rolls == 10
+        return false if rolls.first == 10
+        rolls.reduce(:+) == 10
       end
 
       def foul?(pinfal)
