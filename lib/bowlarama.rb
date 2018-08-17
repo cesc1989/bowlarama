@@ -1,3 +1,5 @@
+require_relative './bowlarama/errors/errors'
+
 require_relative './bowlarama/version'
 require_relative './bowlarama/game'
 require_relative './bowlarama/games/frame'
@@ -9,6 +11,8 @@ module Bowlarama
 
     File.foreach(scores_file) do |l|
       splitted = l.split(' ')
+      raise Errors::PinfallOutOfRangeError, 'Pinfalls cannot be negative or greater than 10' if splitted.last.to_i < 0 || splitted.last.to_i > 10
+
       player_key = splitted.first.to_sym
 
       if match_sheet.key?(player_key)
