@@ -53,6 +53,11 @@ module Bowlarama
             previous_score = previous_frame.score
           end
 
+          if index > 0 && previous_frame.has_spare
+            previous_frame.score += frame.rolls.first
+            previous_score = previous_frame.score
+          end
+
           previous_score += current_frame_rolls_summed
           frame.score = previous_score
         end
