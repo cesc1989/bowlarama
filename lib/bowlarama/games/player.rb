@@ -25,6 +25,8 @@ module Bowlarama
               frame.has_spare = true
             end
 
+            next if frame_rolls_count == 2
+
             if frame.slot_for_rolls?
               frame.rolls << roll
 
