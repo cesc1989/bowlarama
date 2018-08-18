@@ -6,11 +6,19 @@ RSpec.describe Bowlarama::Games::Player do
       it 'returns an array of frames' do
         expect(player.frames).to be_a(Array)
       end
+
+      it 'receives the :frames message' do
+        expect(player).to respond_to(:frames)
+      end
     end
 
     describe '#name' do
-      it 'returnns the name of the player' do
+      it 'returns the name of the player' do
         expect(player.name).to eq 'Suso'
+      end
+
+      it 'receives the :name message' do
+        expect(player).to respond_to(:name)
       end
     end
 

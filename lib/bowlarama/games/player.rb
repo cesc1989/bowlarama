@@ -17,24 +17,18 @@ module Bowlarama
       def assign_rolls_to_frames
         @pinfalls.each do |pf|
           @frames.each do |frame|
-            frame_rolls_count = frame.rolls.count
             roll = pf.to_i
 
-            if frame_rolls_count == 2 && spare?(frame.rolls)
-              frame.has_spare = true
-            end
+            mark_frame_as_spare(frame)
 
-            next if frame_rolls_count == 2
+            next if frame.rolls.count == 2
 
             if frame.slot_for_rolls?
               frame.rolls << roll
 
-              if strike?(roll)
-                frame.rolls << 0
-                frame.has_strike = true
-              end
+              mark_frame_as_strike(frame, roll)
 
-              break
+              break # Move to the next pinfall immediatly
             end
           end
         end
@@ -63,6 +57,21 @@ module Bowlarama
       end
 
       private
+
+      def mark_frame_as_spare(frame)
+        frame_rolls = frame.rolls
+
+        if frame_rolls.count == 2 && spare?(frame_rolls)
+          frame.has_spare = true
+        end
+      end
+
+      def mark_frame_as_strike(frame, roll)
+        if strike?(roll)
+          frame.rolls << 0
+          frame.has_strike = true
+        end
+      end
 
       def strike?(roll)
         roll == 10
