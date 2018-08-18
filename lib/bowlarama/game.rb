@@ -14,6 +14,7 @@ module Bowlarama
       players_data
 
       puts @score
+      @score
     end
 
     private
