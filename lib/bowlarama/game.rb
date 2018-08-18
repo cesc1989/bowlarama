@@ -61,11 +61,11 @@ module Bowlarama
 
     def print_strike_or_spare(frame)
       if !frame.has_strike && !frame.has_spare
-        "#{frame.rolls.first}\t#{frame.rolls.last}\t"
+        "#{frame.raw_rolls.first}\t#{frame.raw_rolls.last}\t"
       elsif frame.has_strike && !frame.has_spare
         " \t#{STRIKE_SIGN}\t"
       elsif !frame.has_strike && frame.has_spare
-        "#{frame.rolls.first}\t#{SPARE_SIGN}\t"
+        "#{frame.raw_rolls.first}\t#{SPARE_SIGN}\t"
       end
     end
   end

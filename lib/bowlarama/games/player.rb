@@ -17,15 +17,14 @@ module Bowlarama
       def assign_rolls_to_frames
         @pinfalls.each do |pf|
           @frames.each do |frame|
-            roll = pf.to_i
-
             if frame.two_rolls?
               frame.mark_as_spare if frame.mark_as_spare?
               next
             end
 
             if frame.slot_for_rolls?
-              frame.rolls << roll
+              frame.rolls << pf.to_i
+              frame.raw_rolls << pf
 
               frame.mark_as_strike if frame.strike?
 

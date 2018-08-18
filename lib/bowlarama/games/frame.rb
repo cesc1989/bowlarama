@@ -8,11 +8,17 @@ module Bowlarama
       end
 
       attr_reader :id
-      attr_accessor :rolls, :score, :has_strike, :has_spare
+      attr_accessor :rolls,
+                    :score,
+                    :has_strike,
+                    :has_spare,
+                    :raw_rolls
 
       def initialize(id)
         @id = id
         @rolls = []
+        # raw_rolls contain the original(String) pinfalls for displaying
+        @raw_rolls = []
         @score = 0
         @has_strike = false
         @has_spare = false
@@ -46,10 +52,6 @@ module Bowlarama
       def mark_as_strike
         rolls << 0
         self.has_strike = true
-      end
-
-      def foul?(roll)
-        roll == 'F'
       end
     end
   end
