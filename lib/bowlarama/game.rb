@@ -12,6 +12,7 @@ module Bowlarama
       results
       score_headers
       players_data
+
       puts @score
     end
 
@@ -35,17 +36,25 @@ module Bowlarama
         @score << "#{player.name}\n"
         @score << "Pinfalls\t"
 
-        player_frames.each_with_index do |frame, index|
-          @score << print_strike_or_spare(frame)
-          @score << "\n" if index == player_frames_count - 1
-        end
+        print_player_rolls(player_frames)
 
         @score << "Score\t\t"
 
-        player_frames.each_with_index do |frame, index|
-          @score << "#{frame.score}\t\t"
-          @score << "\n" if index == player_frames_count - 1
-        end
+        print_player_scores(player_frames)
+      end
+    end
+
+    def print_player_rolls(player_frames)
+      player_frames.each_with_index do |frame, index|
+        @score << print_strike_or_spare(frame)
+        @score << "\n" if index == player_frames.count - 1
+      end
+    end
+
+    def print_player_scores(player_frames)
+      player_frames.each_with_index do |frame, index|
+        @score << "#{frame.score}\t\t"
+        @score << "\n" if index == player_frames.count - 1
       end
     end
 
