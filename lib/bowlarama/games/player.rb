@@ -19,14 +19,15 @@ module Bowlarama
           @frames.each do |frame|
             roll = pf.to_i
 
-            mark_frame_as_spare(frame)
-
-            next if frame.rolls.count == 2
+            if frame.two_rolls?
+              frame.mark_as_spare if frame.mark_as_spare?
+              next
+            end
 
             if frame.slot_for_rolls?
               frame.rolls << roll
 
-              mark_frame_as_strike(frame, roll)
+              frame.mark_as_strike if frame.strike?
 
               break # Move to the next pinfall immediatly
             end
@@ -54,37 +55,6 @@ module Bowlarama
           previous_score += current_frame_rolls_summed
           frame.score = previous_score
         end
-      end
-
-      private
-
-      def mark_frame_as_spare(frame)
-        frame_rolls = frame.rolls
-
-        if frame_rolls.count == 2 && spare?(frame_rolls)
-          frame.has_spare = true
-        end
-      end
-
-      def mark_frame_as_strike(frame, roll)
-        if strike?(roll)
-          frame.rolls << 0
-          frame.has_strike = true
-        end
-      end
-
-      def strike?(roll)
-        roll == 10
-      end
-
-      # Receives array of rolls: [roll_1, roll_2]
-      def spare?(rolls)
-        return false if rolls.first == 10
-        rolls.reduce(:+) == 10
-      end
-
-      def foul?(pinfal)
-        pinfal == 'F'
       end
     end
   end

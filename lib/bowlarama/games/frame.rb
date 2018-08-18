@@ -21,6 +21,36 @@ module Bowlarama
       def slot_for_rolls?
         rolls.count < 2
       end
+
+      def two_rolls?
+        rolls.count == 2
+      end
+
+      def spare?
+        return false if rolls.first == 10
+        rolls.reduce(:+) == 10
+      end
+
+      def mark_as_spare?
+        two_rolls? && spare?
+      end
+
+      def mark_as_spare
+        self.has_spare = true
+      end
+
+      def strike?
+        rolls.first == 10
+      end
+
+      def mark_as_strike
+        rolls << 0
+        self.has_strike = true
+      end
+
+      def foul?(roll)
+        roll == 'F'
+      end
     end
   end
 end
