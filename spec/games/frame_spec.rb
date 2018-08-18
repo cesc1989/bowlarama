@@ -23,24 +23,28 @@ RSpec.describe Bowlarama::Games::Frame do
     describe '#rolls' do
       it 'receives to the :rolls message' do
         expect(frame).to respond_to(:rolls)
+        expect(frame).to respond_to(:rolls=)
       end
     end
 
     describe '#score' do
       it 'receives to the :score message' do
         expect(frame).to respond_to(:score)
+        expect(frame).to respond_to(:score=)
       end
     end
 
     describe '#has_strike' do
       it 'receives to the :has_strike message' do
         expect(frame).to respond_to(:has_strike)
+        expect(frame).to respond_to(:has_strike=)
       end
     end
 
     describe '#has_spare' do
       it 'receives to the :has_spare message' do
         expect(frame).to respond_to(:has_spare)
+        expect(frame).to respond_to(:has_spare=)
       end
     end
   end
