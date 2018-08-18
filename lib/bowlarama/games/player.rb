@@ -12,7 +12,6 @@ module Bowlarama
       def calculate_score
         assign_rolls_to_frames
         calculate_score_per_frames
-        #@frames.each { |f| puts f.inspect }
       end
 
       def assign_rolls_to_frames
