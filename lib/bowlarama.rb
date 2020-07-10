@@ -11,7 +11,9 @@ module Bowlarama
 
     File.foreach(scores_file) do |l|
       splitted = l.split(' ')
-      raise Errors::PinfallOutOfRangeError, 'Pinfalls cannot be negative or greater than 10' if splitted.last.to_i < 0 || splitted.last.to_i > 10
+      raise(
+        Errors::PinfallOutOfRangeError, 'Pinfalls cannot be negative or greater than 10'
+      ) if splitted.last.to_i < 0 || splitted.last.to_i > 10
 
       player_key = splitted.first.to_sym
 
