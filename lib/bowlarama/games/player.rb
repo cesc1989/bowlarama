@@ -19,6 +19,7 @@ module Bowlarama
           @frames.each do |frame|
             if frame.two_rolls?
               frame.mark_as_spare if frame.mark_as_spare?
+
               next
             end
 
@@ -28,7 +29,9 @@ module Bowlarama
 
               frame.mark_as_strike if frame.strike?
 
-              break # Move to the next pinfall immediatly
+              # Stops frames.each and
+              # moves to the next pinfall immediately
+              break
             end
           end
         end

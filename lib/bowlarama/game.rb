@@ -32,7 +32,6 @@ module Bowlarama
     def players_data
       @players.each do |player|
         player_frames = player.frames
-        player_frames_count = player_frames.count
 
         @score << "#{player.name}\n"
         @score << "Pinfalls\t"
